@@ -1,16 +1,35 @@
+
+/*
+
+
+ //https 的实现
+ //1. 安装openssl
+
+ //2. 已下步骤（连接内含有）
+ //http://cnodejs.org/topic/54745ac22804a0997d38b32d
+
+
+ */
+
+
+
 var https = require('https');
 var fs = require('fs');
 var url = require('url');
 
+//配置项
+var config = require('./config.js');
+var root = config.root;
+var host = config.host;
+var port = config.port;
 
-var root = 'D:/github/record/record/record/root';
-function getFullPath(path){
-    return root+path;
-};
 
-
+//https 配置项
 var options = {
+    //CA证书
     pfx:fs.readFileSync('./SSL/server.pfx'),
+
+    //CA私钥
     passphrase:'123321'
 };
 
@@ -26,4 +45,10 @@ https.createServer(options,function(req,res){
 
     res.writeHead(200);
     res.end(resFile);
-}).listen(3000,'127.0.0.1');
+}).listen(port,host);
+
+
+//获取完整路径
+function getFullPath(path){
+    return root+path;
+};
