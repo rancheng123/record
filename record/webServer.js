@@ -3,7 +3,7 @@ var fs = require('fs');
 var url = require('url');
 
 
-var root = './root/';
+var root = 'D:/github/record/record/record/root';
 function getFullPath(path){
     return root+path;
 };
